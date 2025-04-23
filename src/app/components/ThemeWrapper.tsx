@@ -9,7 +9,7 @@ export function ThemeWrapper({ children }: { children: ReactNode }) {
   return (
     <div className={`min-h-screen ${
       isDark ? 'bg-gray-900' : 'bg-white'
-    } transition-colors duration-500`}>
+    } transition-colors delay-500`}>
       {children}
     </div>
   );
