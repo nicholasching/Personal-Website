@@ -48,36 +48,59 @@ const TimelineItem = ({ item, isLast }: { item: typeof timelineData[0]; isLast: 
   const x = useTransform(scrollYProgress, [0.1, 0.4], [100, 0]);
 
   return (
-    <div className="flex items-start gap-6 mb-24 relative">
-      {/* Date - Fixed position */}
-      <div className="w-32 -translate-x-25 -translate-y-[-2px] flex-shrink-0 text-right">
-        <span className="text-sm text-blue-500 font-semibold">{item.date}</span>
+    <div className="mb-24 relative">
+      {/* Timeline dot - Fixed position */}
+      <div className="absolute left-[calc(50%)] -translate-x-2/5 -translate-y-10 xl:left-0 xl:translate-x-[50px] xl:translate-y-0 top-2 z-10">
+        <motion.div 
+          className={`w-4 h-4 bg-blue-500 rounded-full ring-4 ${isDark ? 'ring-gray-900' : 'ring-white'} transition-colors transition-shadow delay-500`}
+          initial={{ scale: 0 }}
+          whileInView={{ scale: 1 }}
+          viewport={{ once: false }}
+          transition={{ 
+            delay: 0.2,
+            type: "spring", 
+            stiffness: 100, 
+            damping: 15 
+          }}
+        />
       </div>
 
-      {/* Content */}
-      <div className="flex-1 relative">
-        {/* Timeline dot - Fixed position */}
-        <div className="absolute left-0 top-2 -translate-x-[103px] z-10">
-          <motion.div 
-            className={`w-4 h-4 bg-blue-500 rounded-full ring-4 ${isDark ? 'ring-gray-900' : 'ring-white'} transition-all delay-500`}
-            initial={{ scale: 0 }}
-            whileInView={{ scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ 
-              delay: 0.2,
-              type: "spring", 
-              stiffness: 100, 
-              damping: 15 
-            }}
-          />
-        </div>
+      {/* Date - Fixed position */}
+      <motion.div 
+        className="absolute w-32 left-1/2 -translate-x-40 -translate-y-9.25 xl:left-0 xl:-translate-x-25 xl:-translate-y-[-2px] flex-shrink-0 text-right"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: false }}
+        transition={{ 
+          delay: 0.2,
+          type: "spring", 
+          stiffness: 100, 
+          damping: 15 
+        }}
+      >
+        <span className="text-sm text-blue-500 font-semibold">{item.date}</span>
+      </motion.div>
 
+      {/* Content */}
+      <div className="flex items-start gap-6 xl:ml-32">
         {/* Content card - Slides in */}
         <motion.div
           ref={itemRef}
-          style={{ opacity, x }}
-          className="pl-8"
+          // Assuming 'x' (slide distance) is defined above using useTransform:
+          // const x = useTransform(scrollYProgress, [0.1, 0.4], [100, 0]);
+          style={{
+            opacity, // Keep opacity driven by Framer Motion
+            // Pass the motion value to a CSS variable, converting number to px string
+            // We reuse the existing 'x' motion value for the distance.
+            // @ts-ignore Ignore TS error for CSS variable type
+            '--slide-distance': useTransform(x, value => `${value}px`)
+          }}
+          // Apply transform using Tailwind classes and the CSS variable:
+          // Default (< xl): slide up from bottom (translate Y)
+          // On xl screens: reset Y, slide in from right (translate X)
+          className="flex-1 mt-8 xl:mt-0 xl:pl-8 transform translate-y-[var(--slide-distance)] xl:translate-y-0 xl:translate-x-[var(--slide-distance)]"
         >
+          {/* Card content remains the same */}
           <div className={`rounded-lg shadow-lg overflow-hidden ${isDark ? 'bg-gray-800' : 'bg-white'} transition-colors delay-500`}>
             {item.image && (
               <div className="relative h-48 w-full">
@@ -103,8 +126,8 @@ const TimelineItem = ({ item, isLast }: { item: typeof timelineData[0]; isLast: 
                   <span
                     key={skill}
                     className={`px-3 py-1 rounded-full text-sm ${
-                      isDark 
-                        ? 'bg-gray-700 text-gray-300' 
+                      isDark
+                        ? 'bg-gray-700 text-gray-300'
                         : 'bg-gray-100 text-gray-700'
                     } transition-colors delay-500`}
                   >
@@ -136,7 +159,7 @@ const Timeline = () => {
   });
 
   return (
-    <section id="experience" className={`py-20 px-4 sm:px-6 lg:px-8 relative ${isDark ? 'bg-gray-900' : 'bg-white'} transition-colors delay-500`}>
+    <section id="experience" className={`py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden ${isDark ? 'bg-gray-900' : 'bg-white'} transition-colors delay-500`}>
       <div className="max-w-5xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -155,7 +178,7 @@ const Timeline = () => {
 
         <div ref={containerRef} className="relative">
           {/* Timeline line container */}
-          <div className="absolute left-[calc(32px+1.5rem)] top-2 bottom-0 w-0.75">
+          <div className={`absolute left-1/2 -translate-y-10 xl:left-[calc(32px+1.5rem)] xl:translate-x-0 xl:translate-y-0 top-2 bottom-0 w-0.75`}>
             {/* Background line */}
             <div className={`h-full ${isDark ? 'bg-gray-700' : 'bg-gray-200'} transition-colors delay-500`} />
             {/* Animated line overlay */}
@@ -185,4 +208,4 @@ const Timeline = () => {
   );
 };
 
-export default Timeline; 
+export default Timeline;

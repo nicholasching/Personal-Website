@@ -58,7 +58,6 @@ export const ThemeTransition = ({ isDark, clickPosition }: ThemeTransitionProps)
           // - padding-box: Uses the padding box as the clip path
           // - content-box: Uses the content box as the clip path
           exit={{ 
-            clipPath: `circle(0px at ${window.innerWidth / 2}px ${window.innerHeight / 2}px)`,
             opacity: 0
           }}
           onAnimationComplete={() => setIsAnimating(false)}
