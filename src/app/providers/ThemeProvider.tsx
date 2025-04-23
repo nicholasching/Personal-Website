@@ -19,7 +19,7 @@ export function useThemeContext() {
 }
 
 function ThemeContextProvider({ children }: { children: React.ReactNode }) {
-  const [isDark, setIsDark] = useState(true);
+  const [isDark, setIsDark] = useState(false);
   const [clickPosition, setClickPosition] = useState<{ x: number; y: number } | null>(null);
 
   useEffect(() => {

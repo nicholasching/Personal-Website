@@ -28,7 +28,7 @@ export const ThemeTransition = ({ isDark, clickPosition }: ThemeTransitionProps)
             opacity: 1
           }}
           animate={{ 
-            clipPath: `circle(150vh at ${clickPosition.x}px ${clickPosition.y}px)`,
+            clipPath: `circle(${Math.max(window.innerWidth, window.innerHeight)*1.45}px at ${clickPosition.x}px ${clickPosition.y}px)`,
             opacity: 1
           }}
           // Common motion.div properties:
@@ -58,7 +58,7 @@ export const ThemeTransition = ({ isDark, clickPosition }: ThemeTransitionProps)
           // - padding-box: Uses the padding box as the clip path
           // - content-box: Uses the content box as the clip path
           exit={{ 
-            clipPath: `polygon(px at ${window.innerWidth / 2}px ${window.innerHeight / 2}px)`,
+            clipPath: `circle(0px at ${window.innerWidth / 2}px ${window.innerHeight / 2}px)`,
             opacity: 0
           }}
           onAnimationComplete={() => setIsAnimating(false)}
