@@ -44,27 +44,22 @@ const TimelineItem = ({ item, isLast }: { item: typeof timelineData[0]; isLast: 
     offset: ['start end', 'center center']
   });
 
-  const opacity = useTransform(scrollYProgress, [0, 0.3], [0, 1]);
-  const x = useTransform(scrollYProgress, [0, 0.3], [100, 0]);
+  const opacity = useTransform(scrollYProgress, [0.1, 0.4], [0, 1]);
+  const x = useTransform(scrollYProgress, [0.1, 0.4], [100, 0]);
 
   return (
-    <motion.div
-      ref={itemRef}
-      style={{ opacity, x }}
-      className="flex items-start gap-6 mb-24 relative"
-    >
-      {/* Date */}
+    <div className="flex items-start gap-6 mb-24 relative">
+      {/* Date - Fixed position */}
       <div className="w-32 -translate-x-25 -translate-y-[-2px] flex-shrink-0 text-right">
         <span className="text-sm text-blue-500 font-semibold">{item.date}</span>
       </div>
 
-
       {/* Content */}
       <div className="flex-1 relative">
-        {/* Timeline dot */}
+        {/* Timeline dot - Fixed position */}
         <div className="absolute left-0 top-2 -translate-x-[103px] z-10">
           <motion.div 
-            className={`w-4 h-4 bg-blue-500 rounded-full ring-4 ${isDark ? 'ring-gray-900' : 'ring-white'} transition-colors delay-500`}
+            className={`w-4 h-4 bg-blue-500 rounded-full ring-4 ${isDark ? 'ring-gray-900' : 'ring-white'} transition-all delay-500`}
             initial={{ scale: 0 }}
             whileInView={{ scale: 1 }}
             viewport={{ once: true }}
@@ -77,8 +72,12 @@ const TimelineItem = ({ item, isLast }: { item: typeof timelineData[0]; isLast: 
           />
         </div>
 
-        {/* Content card */}
-        <div className="pl-8">
+        {/* Content card - Slides in */}
+        <motion.div
+          ref={itemRef}
+          style={{ opacity, x }}
+          className="pl-8"
+        >
           <div className={`rounded-lg shadow-lg overflow-hidden ${isDark ? 'bg-gray-800' : 'bg-white'} transition-colors delay-500`}>
             {item.image && (
               <div className="relative h-48 w-full">
@@ -115,9 +114,9 @@ const TimelineItem = ({ item, isLast }: { item: typeof timelineData[0]; isLast: 
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
-    </motion.div>
+    </div>
   );
 };
 
@@ -158,7 +157,7 @@ const Timeline = () => {
           {/* Timeline line container */}
           <div className="absolute left-[calc(32px+1.5rem)] top-2 bottom-0 w-0.75">
             {/* Background line */}
-            <div className={`h-full ${isDark ? 'bg-gray-700' : 'bg-gray-200'}`} />
+            <div className={`h-full ${isDark ? 'bg-gray-700' : 'bg-gray-200'} transition-colors delay-500`} />
             {/* Animated line overlay */}
             <motion.div
               className="absolute top-0 left-0 w-full h-full bg-blue-500 origin-top"

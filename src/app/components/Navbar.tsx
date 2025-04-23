@@ -51,7 +51,7 @@ const Navbar = () => {
             href="/" 
             className={`font-bold text-xl ${
               isDark ? 'text-white' : 'text-gray-900'
-            } hover:text-blue-500 transition-colors delay-500`}
+            } hover:text-blue-500 transition-all delay-500`}
           >
             Nicholas Ching
           </Link>
@@ -66,7 +66,7 @@ const Navbar = () => {
                   isDark 
                     ? 'text-gray-200 hover:text-blue-400' 
                     : 'text-gray-700 hover:text-blue-600'
-                } transition-colors delay-500`}
+                } transition-all delay-500`}
               >
                 {item.name}
               </Link>
@@ -116,7 +116,7 @@ const Navbar = () => {
           >
             <div className={`px-2 pt-2 pb-3 space-y-1 rounded-md shadow-lg ${
               isDark ? 'bg-gray-800' : 'bg-white'
-            } transition-colors delay-500`}>
+            } transition-all delay-500`}>
               {navItems.map((item) => (
                 <Link
                   key={item.name}
@@ -125,7 +125,7 @@ const Navbar = () => {
                     isDark 
                       ? 'text-gray-200 hover:bg-gray-700' 
                       : 'text-gray-700 hover:bg-gray-100'
-                  } transition-colors delay-500`}
+                  } transition-all delay-500`}
                   onClick={() => setIsOpen(false)}
                 >
                   {item.name}
@@ -142,7 +142,7 @@ const Navbar = () => {
                   isDark 
                     ? 'text-gray-200 hover:bg-gray-700' 
                     : 'text-gray-700 hover:bg-gray-100'
-                } transition-colors delay-500`}
+                } transition-all delay-500`}
               >
                 {isDark ? 'Light Mode' : 'Dark Mode'}
               </button>
