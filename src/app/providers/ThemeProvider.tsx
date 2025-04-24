@@ -19,9 +19,10 @@ export function useThemeContext() {
 }
 
 function ThemeContextProvider({ children }: { children: React.ReactNode }) {
-  const [isDark, setIsDark] = useState(false);
+  const [isDark, setIsDark] = useState(true);
   const [clickPosition, setClickPosition] = useState<{ x: number; y: number } | null>(null);
 
+  /*
   useEffect(() => {
     // Check if we're in dark mode
     const isDarkMode = document.documentElement.classList.contains('dark');
@@ -44,6 +45,8 @@ function ThemeContextProvider({ children }: { children: React.ReactNode }) {
 
     return () => observer.disconnect();
   }, []);
+  */
+
 
   const toggleTheme = (e: React.MouseEvent) => {
     //const newTheme = isDark ? 'light' : 'dark';

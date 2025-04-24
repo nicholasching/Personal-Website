@@ -180,10 +180,10 @@ const Timeline = () => {
           {/* Timeline line container */}
           <div className={`absolute left-1/2 -translate-y-10 xl:left-[calc(32px+1.5rem)] xl:translate-x-0 xl:translate-y-0 top-2 bottom-0 w-0.75`}>
             {/* Background line */}
-            <div className={`h-full ${isDark ? 'bg-gray-700' : 'bg-gray-200'} transition-colors delay-500`} />
+            {/* <div className={`h-full rounded-full ${isDark ? 'bg-gray-700' : 'bg-gray-200'} transition-colors delay-500`} /> */}
             {/* Animated line overlay */}
             <motion.div
-              className="absolute top-0 left-0 w-full h-full bg-blue-500 origin-top"
+              className="absolute top-0 left-0 w-full h-full rounded-full bg-gradient-to-b from-blue-500 to-purple-500 origin-top"
               style={{
                 scaleY: smoothProgress
               }}
