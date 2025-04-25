@@ -29,14 +29,13 @@ const Hero = () => {
           <h2 className={`text-xl sm:text-2xl md:text-3xl mb-8 ${
             isDark ? 'text-gray-200' : 'text-gray-700'
           } transition-colors delay-500`}>
-            Full Stack Developer & Designer
+            Computer Engineering Student
           </h2>
 
           <p className={`text-lg max-w-2xl mx-auto mb-12 ${
             isDark ? 'text-gray-200' : 'text-gray-700'
           } transition-colors delay-500`}>
-            I create beautiful, responsive, and user-friendly web applications
-            with a focus on clean code and modern design principles.
+            I create impactful, solution-oriented technology with a focus on user-centered design and meaningful innovation.
           </p>
 
           <div className="flex justify-center space-x-6 mb-12">
@@ -54,7 +53,7 @@ const Hero = () => {
                   isDark 
                     ? 'text-gray-200 hover:bg-gray-800' 
                     : 'text-gray-700 hover:bg-gray-100'
-                } transition-all delay-500`}
+                } transition-[color] delay-500 transition-[background-color] delay-0`}
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
                 aria-label={label}
@@ -76,7 +75,7 @@ const Hero = () => {
                 isDark
                   ? 'bg-gray-800 text-white hover:bg-gray-700'
                   : 'bg-gray-100 text-gray-900 hover:bg-gray-200'
-              } transition-all delay-500`}
+              } transition-colors delay-500 hover:delay-0`}
             >
               View My Work
             </a>
@@ -86,7 +85,7 @@ const Hero = () => {
                 isDark
                   ? 'bg-blue-600 text-white hover:bg-blue-500'
                   : 'bg-blue-500 text-white hover:bg-blue-600'
-              } transition-all delay-500`}
+              } transition-colors delay-500 hover:delay-0`}
             >
               Contact Me
             </a>

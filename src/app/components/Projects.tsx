@@ -43,7 +43,7 @@ const ProjectCard = ({ project }: { project: typeof projects[0] }) => {
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
+      viewport={{ once: false }}
       transition={{ duration: 0.5 }}
       className={`group relative rounded-xl overflow-hidden shadow-lg ${
         isDark ? 'bg-gray-800' : 'bg-white'
@@ -153,7 +153,7 @@ const Projects = () => {
           <div className="flex flex-wrap justify-center gap-2">
             <button
               onClick={() => setFilter('all')}
-              className={`px-4 py-2 rounded-full text-sm font-medium transition-all delay-500 ${
+              className={`px-4 py-2 rounded-full text-sm font-medium transition-colors delay-500 hover:delay-0 ${
                 filter === 'all'
                   ? 'bg-blue-500 text-white'
                   : isDark 
@@ -167,7 +167,7 @@ const Projects = () => {
               <button
                 key={tag}
                 onClick={() => setFilter(tag)}
-                className={`px-4 py-2 rounded-full text-sm font-medium transition-all delay-500 ${
+                className={`px-4 py-2 rounded-full text-sm font-medium transition-colors delay-500 hover:delay-0 ${
                   filter === tag
                     ? 'bg-blue-500 text-white'
                     : isDark 

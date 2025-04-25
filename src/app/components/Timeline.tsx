@@ -8,31 +8,31 @@ import { useThemeContext } from '../providers/ThemeProvider';
 // Example timeline data - you should replace this with your actual experience
 const timelineData = [
   {
-    date: '2023 - Present',
-    title: 'Software Engineer',
-    company: 'Bloomberg LP',
-    location: 'New York',
-    description: 'Developed WYSIWYG editor enabling designers to create and deploy custom paywalls to Bloomberg.com without code, reducing engineering overhead by 80% and eliminating 5+ feedback cycles between teams.',
+    date: '2025.05 - Present',
+    title: 'Software Engineering Research Assistant',
+    company: 'McMaster University',
+    location: 'Hamilton, Canada',
+    description: 'Developed a WYSIWYG editor enabling designers to create and deploy custom paywalls to Bloomberg.com without code, reducing engineering overhead by 80% and eliminating 5+ feedback cycles between teams.',
     skills: ['React', 'TypeScript', 'Node.js'],
-    image: '/experience/bloomberg.png', // Add your images to public/experience/
+    image: '/experience/mcmaster.png', // Add your images to public/experience/
   },
   {
-    date: '2023 - Present',
-    title: 'Frontend Developer',
-    company: 'WatStreet',
-    location: 'Waterloo',
+    date: '2025.04 ⋅ 2025.05',
+    title: 'Software Developer Intern',
+    company: 'Skildlabs',
+    location: 'Toronto, Canada',
     description: 'Developed Options Strategy Builder to create complex strategies for stock profit analysis and Ledger Dashboard to view holdings and ledgers.',
     skills: ['Next.js', 'TypeScript', 'TailwindCSS'],
-    image: '/experience/watstreet.png',
+    image: '/experience/skildlabs.png',
   },
   {
-    date: '2022 - 2023',
-    title: 'Software Engineer',
-    company: 'Vercel AI',
-    location: 'Toronto',
+    date: '2025.03 - 2025.04',
+    title: 'Software Developer Intern',
+    company: 'Zeitdice',
+    location: 'Toronto, Canada',
     description: 'Building at the intersection of design engineering and AI.',
     skills: ['React', 'Python', 'Machine Learning'],
-    image: '/experience/vercel.png',
+    image: '/experience/zeitdice.png',
   },
 ];
 
@@ -178,12 +178,12 @@ const Timeline = () => {
 
         <div ref={containerRef} className="relative">
           {/* Timeline line container */}
-          <div className={`absolute left-1/2 -translate-y-10 xl:left-[calc(32px+1.5rem)] xl:translate-x-0 xl:translate-y-0 top-2 bottom-0 w-0.75`}>
+          <div className={`absolute left-1/2 -translate-y-10 xl:left-[calc(32px+1.5rem)] xl:translate-x-0 xl:translate-y-0 top-2 bottom-0 w-0.75 xl:w-1`}>
             {/* Background line */}
             {/* <div className={`h-full rounded-full ${isDark ? 'bg-gray-700' : 'bg-gray-200'} transition-colors delay-500`} /> */}
             {/* Animated line overlay */}
             <motion.div
-              className="absolute top-0 left-0 w-full h-full rounded-full bg-gradient-to-b from-blue-500 to-purple-500 origin-top"
+              className="absolute top-0 left-0 w-full h-full rounded-full bg-gradient-to-b from-blue-500 via-purple-500 via-[80%] to-transparent origin-top"
               style={{
                 scaleY: smoothProgress
               }}
