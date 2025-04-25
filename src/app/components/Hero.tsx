@@ -64,30 +64,38 @@ const Hero = () => {
           </div>
 
           <motion.div
-            className="flex flex-col sm:flex-row justify-center gap-4"
+            className="flex flex-col sm:flex-row justify-center gap-4 pb-50 xl:pb-30"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.5 }}
           >
             <a
-              href="#projects"
+              href="#experience"
+              onClick={(e) => {
+                e.preventDefault();
+                document.getElementById('experience')?.scrollIntoView({ behavior: 'smooth' });
+              }}
               className={`px-8 py-3 rounded-full text-lg font-medium ${
                 isDark
                   ? 'bg-gray-800 text-white hover:bg-gray-700'
                   : 'bg-gray-100 text-gray-900 hover:bg-gray-200'
               } transition-colors delay-500 hover:delay-0`}
             >
-              View My Work
+              My Experience
             </a>
             <a
-              href="#contact"
+              href="#projects"
+              onClick={(e) => {
+                e.preventDefault();
+                document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
+              }}
               className={`px-8 py-3 rounded-full text-lg font-medium ${
                 isDark
                   ? 'bg-blue-600 text-white hover:bg-blue-500'
                   : 'bg-blue-500 text-white hover:bg-blue-600'
               } transition-colors delay-500 hover:delay-0`}
             >
-              Contact Me
+              Explore My Projects
             </a>
           </motion.div>
         </motion.div>
