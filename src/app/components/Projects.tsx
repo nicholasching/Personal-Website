@@ -3,20 +3,26 @@
 import { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { FiGithub, FiExternalLink } from 'react-icons/fi';
-import { FaJava, FaBrain, FaReact } from 'react-icons/fa';
-import { SiNextdotjs, SiTypescript, SiTailwindcss, SiFramer, SiPython, SiOpencv, SiFlask, SiArduino, SiCplusplus, SiHtml5, SiCss3, SiJavascript, SiSpring } from 'react-icons/si';
+import { FaJava, FaReact, FaNetworkWired } from 'react-icons/fa';
+import { SiNextdotjs, SiTypescript, SiTailwindcss, SiFramer, SiPython, SiOpencv, SiFlask, SiArduino, SiCplusplus, SiHtml5, SiCss3, SiJavascript, SiSpring, SiGooglegemini, SiAppwrite, SiExpo } from 'react-icons/si';
+import { TbApi } from 'react-icons/tb';
 import { useThemeContext } from '../providers/ThemeProvider';
 
 // Project data based on your GitHub and old website
 const projects = [
   {
     title: 'MakeTheCut',
-    description: 'A modern, responsive personal portfolio website built with Next.js and TailwindCSS. Features smooth animations, dark mode support, and a clean design.',
+    description: 'Full-stack web platform crowdsourcing first-year engineering student grades and stream preferences to predict specialization cutoffs.',
     image: '/projects/makethecutvid.mp4',
-    tags: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Framer Motion'],
-    github: 'https://github.com/nicholasching/Personal-Website',
-    demo: 'https://www.nicholasching.ca',
+    tags: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Appwrite'],
+    demo: 'https://www.makethecut.ca/',
     metrics: [
+      {
+        type: 'views',
+        title: 'Visits',
+        value: '15K+',
+        icon: '👁️'
+      },
       {
         type: 'users',
         title: 'Active Users',
@@ -28,38 +34,26 @@ const projects = [
   },
   {
     title: 'Perception',
-    description: 'An AI-powered code editor that helps developers write better code faster. Built with Electron and React.',
+    description: 'Assistive mobile app created to empower visually impaired users; automatically converts camera images into spoken descriptions with intuitive voice command activation and prompting.',
     image: '/projects/perceptionvid.mp4',
-    tags: ['React', 'TypeScript', 'Electron', 'AI'],
+    tags: ['React Native', 'TypeScript', 'Expo', 'Gemini AI SDK'],
     github: 'https://github.com/getcursor/cursor',
     demo: 'https://cursor.sh',
     metrics: [
       {
         type: 'award',
-        title: 'Product of the Year',
-        value: 'Developer Tools Awards',
+        title: 'of 1000+ Engineering Students',
+        value: `Top 6 Finalist`,
         icon: '🏆'
       },
-      {
-        type: 'users',
-        title: 'Active Users',
-        value: '1M+',
-        icon: '👥'
-      },
-      {
-        type: 'downloads',
-        title: 'Downloads',
-        value: '5M+',
-        icon: '📥'
-      }
     ],
     featured: true
   },
   {
     title: 'MedID',
-    description: 'An AI-powered system enabling first responders to rapidly identify patients and access critical medical history during emergencies, streamlining urgent care.',
+    description: 'Vision-based system enabling first responders to rapidly identify patients and access critical medical history during emergencies, streamlining urgent care.',
     image: '/projects/medidvid.mp4',
-    tags: ['Python', 'HTML/CSS/JS', 'Flask', 'AI'],
+    tags: ['Python', 'OpenCV', 'HTML/CSS/JS', 'Flask', 'Gemini AI SDK'],
     github: 'https://github.com/nicholasching/MedID',
     demo: 'https://devpost.com/software/medid-a-faster-way-to-retrieve-critical-information',
     metrics: [
@@ -73,9 +67,9 @@ const projects = [
   },
   {
     title: 'Scam-Mah',
-    description: `A tool to detect and respond to potential phone scams by delivering automated, humorous replies to waste scammers' time and protect vulnerable users.`,
+    description: `Tool to detect and respond to potential phone scams by delivering automated, humorous replies to waste scammers' time and protect vulnerable users.`,
     image: '/projects/scammah.png',
-    tags: ['Python', 'HTML/CSS/JS', 'Flask', 'AI'],
+    tags: ['Python', 'HTML/CSS/JS', 'Flask', 'Gemini AI SDK'],
     github: 'https://github.com/nicholasching/Scam-Mah',
     demo: 'https://devpost.com/software/scam-mah',
     metrics: [
@@ -90,7 +84,7 @@ const projects = [
   },
   {
     title: 'Hydrology',
-    description: 'An Arduino-powered automatic garden watering device driven by soil moisture and weather forecasting API data.',
+    description: 'Arduino-powered automatic garden watering device driven by soil moisture and weather forecasting API data.',
     image: '/projects/hydrology.jpg',
     tags: ['C++', 'Arduino', 'API'],
     demo: 'https://projectboard.world/ysc/project/hydrology-the-smarter-way-of-plant-irrigation',
@@ -106,8 +100,8 @@ const projects = [
   },
   {
     title: 'LAN Pictionary',
-    description: 'A recreation of Pictionary featuring local server discovery, custom themes, real time updates, live chat, and an aesthetic GUI.',
-    image: '/projects/lanpictionary.png',
+    description: 'Recreation of Pictionary featuring local server discovery, custom themes, real time updates, live chat, and an aesthetic GUI.',
+    image: '/projects/pictionary.png',
     tags: ['Java', 'Swing', 'Multicast'],
     github: 'https://github.com/nicholasching/LAN-Pictionary',
     metrics: [
@@ -124,9 +118,12 @@ const projects = [
 
 // Add icon mapping for tags
 const tagIcons: Record<string, React.ReactNode> = {
+  'Appwrite': <SiAppwrite className="w-4 h-4" />,
   'Next.js': <SiNextdotjs className="w-4 h-4" />,
   'TypeScript': <SiTypescript className="w-4 h-4" />,
   'React': <FaReact className="w-4 h-4" />,
+  'React Native': <FaReact className="w-4 h-4" />,
+  'Expo': <SiExpo className="w-4 h-4" />,
   'Tailwind CSS': <SiTailwindcss className="w-4 h-4" />,
   'Framer Motion': <SiFramer className="w-4 h-4" />,
   'Python': <SiPython className="w-4 h-4" />,
@@ -134,31 +131,31 @@ const tagIcons: Record<string, React.ReactNode> = {
   'Flask': <SiFlask className="w-4 h-4" />,
   'Machine Learning': <SiPython className="w-4 h-4" />,
   'HTML/CSS/JS': <><SiHtml5 className="w-4 h-4" /><SiCss3 className="w-4 h-4" /><SiJavascript className="w-4 h-4" /></>,
-  'AI': <FaBrain className="w-4 h-4" />,
+  'Gemini AI SDK': <SiGooglegemini className="w-4 h-4" />,
   'C++': <SiCplusplus className="w-4 h-4" />,
   'Arduino': <SiArduino className="w-4 h-4" />,
-  'API': <SiPython className="w-4 h-4" />,
+  'API': <TbApi className="w-4 h-4" />,
   'Circuit Design': <SiArduino className="w-4 h-4" />,
   'Java': <FaJava className="w-4 h-4" />,
-  'Swing': <SiSpring className="w-4 h-4" />,
-  'Multicast': <SiSpring className="w-4 h-4" />,
-  'Networking': <SiSpring className="w-4 h-4" />
+  'Swing': <FaJava className="w-4 h-4" />,
+  'Multicast': <FaNetworkWired className="w-4 h-4" />,
 };
 
 const ProjectCard = ({ project }: { project: typeof projects[0] }) => {
   const { isDark } = useThemeContext();
   const videoRef = useRef<HTMLVideoElement>(null);
+  const [isMediaHovered, setIsMediaHovered] = useState(false);
+  const [isCardHovered, setIsCardHovered] = useState(false);
+  const [mousePosition, setMousePosition] = useState({ x: 50, y: 50 });
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [isVideoVisible, setIsVideoVisible] = useState(false);
 
   // Handle video autoplay when in view
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting && videoRef.current) {
-            videoRef.current.play();
-          } else if (videoRef.current) {
-            videoRef.current.pause();
-          }
+          setIsVideoVisible(entry.isIntersecting);
         });
       },
       { threshold: 0.5 }
@@ -175,8 +172,22 @@ const ProjectCard = ({ project }: { project: typeof projects[0] }) => {
     };
   }, []);
 
+  // Handle video playback based on visibility and hover
+  useEffect(() => {
+    if (!videoRef.current) return;
+
+    if (isVideoVisible || isMediaHovered) {
+      videoRef.current.play().catch(() => {
+        // Handle any autoplay restrictions gracefully
+      });
+    } else {
+      videoRef.current.pause();
+    }
+  }, [isVideoVisible, isMediaHovered]);
+
   return (
     <motion.div
+      ref={containerRef}
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: false }}
@@ -184,112 +195,206 @@ const ProjectCard = ({ project }: { project: typeof projects[0] }) => {
       className={`group relative rounded-xl overflow-hidden shadow-lg ${
         isDark ? 'bg-gray-800' : 'bg-white'
       } transition-colors delay-500`}
+      onMouseEnter={() => setIsCardHovered(true)}
+      onMouseLeave={() => {
+        setIsCardHovered(false);
+        setIsMediaHovered(false);
+        setMousePosition({ x: 50, y: 50 });
+      }}
     >
+      {/* Animated border */}
+      {isCardHovered && (
+        <>
+          <div className="absolute inset-0 z-20 rounded-xl pointer-events-none">
+            <div className="absolute inset-0 overflow-hidden rounded-xl">
+              {/* Top line */}
+              <div className="absolute -left-full top-0 h-[3px] w-[200%] bg-gradient-to-r from-transparent via-blue-400/90 to-transparent animate-[shimmer_1.5s_linear_infinite] shadow-[0_0_10px_rgba(59,130,246,0.5)]" />
+              {/* Right line */}
+              <div className="absolute -top-full right-0 h-[200%] w-[3px] bg-gradient-to-b from-transparent via-blue-400/90 to-transparent animate-[shimmer_1.5s_linear_infinite_375ms] shadow-[0_0_10px_rgba(59,130,246,0.5)]" />
+              {/* Bottom line */}
+              <div className="absolute -right-full bottom-0 h-[3px] w-[200%] bg-gradient-to-l from-transparent via-blue-400/90 to-transparent animate-[shimmer_1.5s_linear_infinite_750ms] shadow-[0_0_10px_rgba(59,130,246,0.5)]" />
+              {/* Left line */}
+              <div className="absolute -bottom-full left-0 h-[200%] w-[3px] bg-gradient-to-t from-transparent via-blue-400/90 to-transparent animate-[shimmer_1.5s_linear_infinite_1125ms] shadow-[0_0_10px_rgba(59,130,246,0.5)]" />
+            </div>
+          </div>
+          {/* Additional glow effect - only for images */}
+          {(!project.image.endsWith('.mp4') && (isMediaHovered || isCardHovered)) && (
+            <div className="absolute inset-0 z-10 rounded-xl opacity-15 bg-gradient-to-br from-blue-500/0 via-blue-500/40 to-blue-500/0 animate-pulse" />
+          )}
+        </>
+      )}
+
       {/* Project Media */}
-      <div className="relative h-48 overflow-hidden">
-        <div className="absolute inset-0 bg-blue-500 mix-blend-multiply opacity-0 group-hover:opacity-30 transition-opacity z-10" />
+      <div 
+        className={`relative overflow-hidden transition-all duration-300 ease-in-out ${project.image.endsWith('.mp4') && isMediaHovered ? 'h-full absolute inset-0' : 'h-48'}`}
+        onMouseEnter={(e) => {
+          setIsMediaHovered(true);
+          setIsCardHovered(true);
+        }}
+        onMouseLeave={(e) => {
+          const rect = e.currentTarget.getBoundingClientRect();
+          const isLeavingCard = 
+            e.clientX < rect.left ||
+            e.clientX > rect.right ||
+            e.clientY < rect.top ||
+            e.clientY > rect.bottom + 50;
+
+          setIsMediaHovered(false);
+          if (isLeavingCard) {
+            setIsCardHovered(false);
+          }
+          setMousePosition({ x: 50, y: 50 });
+        }}
+        onMouseMove={(e) => {
+          if (!containerRef.current) return;
+          
+          const rect = containerRef.current.getBoundingClientRect();
+          const x = Math.max(0, Math.min(100, ((e.clientX - rect.left) / rect.width) * 100));
+          const y = Math.max(0, Math.min(100, ((e.clientY - rect.top) / rect.height) * 100));
+          
+          setMousePosition({ x, y });
+        }}
+      >
+        <div className="absolute inset-0 bg-blue-500 mix-blend-multiply opacity-0 transition-opacity z-10" />
         {project.image.endsWith('.mp4') ? (
-          <video
-            ref={videoRef}
-            className="w-full h-full object-cover"
-            loop
-            muted
-            playsInline
-            preload="metadata"
-          >
-            <source src={project.image} type="video/mp4" />
-          </video>
+          <div className="relative w-full h-full overflow-hidden">
+            <video
+              ref={videoRef}
+              className="absolute w-full h-full"
+              style={{
+                objectFit: 'cover',
+                objectPosition: isMediaHovered ? `${mousePosition.x}% ${mousePosition.y}%` : '50% 50%'
+              }}
+              loop
+              muted
+              playsInline
+              preload="metadata"
+            >
+              <source src={project.image} type="video/mp4" />
+            </video>
+          </div>
         ) : (
           <img
             src={project.image}
             alt={project.title}
-            className="w-full h-full object-cover object-center transform group-hover:scale-105 transition-transform duration-300"
+            className={`w-full h-full object-cover object-center transition-transform duration-300 ease-in-out ${
+              isCardHovered || isMediaHovered ? 'scale-110' : 'scale-100'
+            }`}
           />
         )}
       </div>
 
       {/* Project Info */}
-      <div className="p-6">
-        <div className="flex justify-between items-start mb-4">
-          <h3 className={`text-xl font-bold ${
-            isDark ? 'text-white' : 'text-gray-900'
-          } transition-colors delay-500`}>{project.title}</h3>
-          <div className="flex gap-3">
-            {project.github && (
-              <a
-                href={project.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`${
-                  isDark ? 'text-gray-300 hover:text-blue-400' : 'text-gray-600 hover:text-blue-600'
-                } transition-colors delay-500`}
-                aria-label={`View ${project.title} source code`}
-              >
-                <FiGithub className="w-5 h-5" />
-              </a>
-            )}
-            {project.demo && (
-              <a
-                href={project.demo}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`${
-                  isDark ? 'text-gray-300 hover:text-blue-400' : 'text-gray-600 hover:text-blue-600'
-                } transition-colors delay-500`}
-                aria-label={`View ${project.title} demo`}
-              >
-                <FiExternalLink className="w-5 h-5" />
-              </a>
-            )}
+      <div className={`relative z-20 transition-opacity duration-300 ${project.image.endsWith('.mp4') && isMediaHovered ? 'opacity-0' : 'opacity-100'}`}>
+        <div className="p-6">
+          <div className="flex justify-between items-start mb-4">
+            <h3 className={`text-xl font-bold ${
+              isDark ? 'text-white' : 'text-gray-900'
+            } transition-colors delay-500`}>{project.title}</h3>
+            <div className="flex gap-3">
+              {project.github && (
+                <a
+                  href={project.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`${
+                    isDark ? 'text-gray-300 hover:text-blue-400' : 'text-gray-600 hover:text-blue-600'
+                  } transition-colors delay-500`}
+                  aria-label={`View ${project.title} source code`}
+                >
+                  <FiGithub className="w-5 h-5" />
+                </a>
+              )}
+              {project.demo && (
+                <a
+                  href={project.demo}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`${
+                    isDark ? 'text-gray-300 hover:text-blue-400' : 'text-gray-600 hover:text-blue-600'
+                  } transition-colors delay-500`}
+                  aria-label={`View ${project.title} demo`}
+                >
+                  <FiExternalLink className="w-5 h-5" />
+                </a>
+              )}
+            </div>
           </div>
-        </div>
-        <p className={`${
-          isDark ? 'text-gray-300' : 'text-gray-600'
-        } mb-4 transition-colors delay-500`}>{project.description}</p>
+          <p className={`${
+            isDark ? 'text-gray-300' : 'text-gray-600'
+          } mb-4 transition-colors delay-500`}>{project.description}</p>
 
-        {/* Skills/Tags */}
-        <div className="flex flex-wrap gap-2 mb-4">
-          {project.tags.map((tag) => (
-            <span
-              key={tag}
-              className={`px-3 py-1 rounded-full text-sm ${
-                isDark 
-                  ? 'bg-gray-700 text-gray-200' 
-                  : 'bg-gray-100 text-gray-700'
-              } transition-colors delay-500`}
-            >
-              {tag}
-            </span>
-          ))}
-        </div>
-        
-        {/* Metrics Section */}
-        {project.metrics && project.metrics.length > 0 && (
-          <div className="flex flex-wrap gap-1.5">
-            {project.metrics.map((metric, index) => (
-              <div 
-                key={index} 
-                className={`flex items-center gap-1 px-2 py-1.5 rounded-full text-xs ${
+          {/* Skills/Tags */}
+          <div className="flex flex-wrap gap-2 mb-4">
+            {project.tags.map((tag) => (
+              <span
+                key={tag}
+                className={`px-3 py-1 rounded-full text-sm ${
                   isDark 
-                    ? 'bg-gray-700/30 text-gray-300' 
-                    : 'bg-gray-100/80 text-gray-600'
+                    ? 'bg-gray-700 text-gray-200' 
+                    : 'bg-gray-100 text-gray-700'
                 } transition-colors delay-500`}
               >
-                <span className="text-sm">{metric.icon}</span>
-                <div className="flex flex-wrap items-center min-w-0 gap-x-1">
-                  <span className="font-medium whitespace-nowrap">{metric.value}</span>
-                  {'title' in metric && (
-                    <span className="opacity-75 overflow-hidden text-ellipsis">{metric.title}</span>
-                  )}
-                </div>
-              </div>
+                {tag}
+              </span>
             ))}
           </div>
-        )}
+          
+          {/* Metrics Section */}
+          {project.metrics && project.metrics.length > 0 && (
+            <div className="flex flex-wrap gap-1.5">
+              {project.metrics.map((metric, index) => (
+                <div 
+                  key={index} 
+                  className={`flex items-center gap-1 px-2 py-1.5 rounded-full text-xs ${
+                    isDark 
+                      ? 'bg-gray-700/30 text-gray-300' 
+                      : 'bg-gray-100/80 text-gray-600'
+                  } transition-colors delay-500`}
+                >
+                  <span className="text-sm">{metric.icon}</span>
+                  <div className="flex flex-wrap items-center min-w-0 gap-x-1">
+                    <span className="font-medium whitespace-nowrap">{metric.value}</span>
+                    {'title' in metric && (
+                      <span className="opacity-75 overflow-hidden text-ellipsis">{metric.title}</span>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
       </div>
     </motion.div>
   );
 };
+
+// Update the shimmer animation
+const shimmerAnimation = `
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  25% {
+    opacity: 0.9;
+  }
+  75% {
+    opacity: 0.9;
+  }
+  100% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+`;
+
+// Add the style tag to the document
+if (typeof document !== 'undefined') {
+  const style = document.createElement('style');
+  style.textContent = shimmerAnimation;
+  document.head.appendChild(style);
+}
 
 const Projects = () => {
   const { isDark } = useThemeContext();
