@@ -8,11 +8,11 @@ import { useThemeContext } from '../providers/ThemeProvider';
 
 // Navigation items
 const navItems = [
-  { name: 'Home', href: '/' },
-  { name: 'About', href: '#about' },
-  { name: 'Experience', href: '#experience' },
-  { name: 'Projects', href: '#projects' },
-  { name: 'Contact', href: '#contact' },
+  { name: 'Home', href: 'home' },
+  // { name: 'About', href: '#about' },
+  { name: 'Experience', href: 'experience' },
+  { name: 'Projects', href: 'projects' },
+  // { name: 'Contact', href: '#contact' },
 ];
 
 const Navbar = () => {
@@ -37,8 +37,8 @@ const Navbar = () => {
       className={`fixed w-full z-50 transition-all delay-500 ${
         scrolled 
           ? isDark 
-            ? 'bg-gray-900/80 shadow-lg backdrop-blur-md'
-            : 'bg-white/80 shadow-lg backdrop-blur-md'
+            ? 'bg-gray-900/40 shadow-lg backdrop-blur-md'
+            : 'bg-white/40 shadow-lg backdrop-blur-md'
           : isDark
             ? 'bg-transparent'
             : 'bg-white/95'
@@ -62,6 +62,10 @@ const Navbar = () => {
               <Link
                 key={item.name}
                 href={item.href}
+                onClick={(e) => {
+                  e.preventDefault();
+                  document.getElementById(item.href)?.scrollIntoView({ behavior: 'smooth' });
+                }}
                 className={`${
                   isDark 
                     ? 'text-gray-200 hover:text-blue-400' 

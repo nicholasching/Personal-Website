@@ -98,7 +98,7 @@ const TimelineItem = ({ item, isLast }: { item: typeof timelineData[0]; isLast: 
           // Apply transform using Tailwind classes and the CSS variable:
           // Default (< xl): slide up from bottom (translate Y)
           // On xl screens: reset Y, slide in from right (translate X)
-          className="flex-1 mt-8 xl:mt-0 xl:pl-8 transform translate-y-[var(--slide-distance)] xl:translate-y-0 xl:translate-x-[var(--slide-distance)]"
+          className="flex-1 mt-8 xl:mt-0 xl:pl-8 transform translate-y-[var(--slide-distance)] xl:translate-y-0 xl:translate-x-[var(--slide-distance)] transition-transform duration-500 ease-in-out"
         >
           {/* Card content remains the same */}
           <div className={`rounded-lg shadow-lg overflow-hidden ${isDark ? 'bg-gray-800' : 'bg-white'} transition-colors delay-500`}>
@@ -118,7 +118,7 @@ const TimelineItem = ({ item, isLast }: { item: typeof timelineData[0]; isLast: 
                   <h3 className={`text-lg font-bold ${isDark ? 'text-white' : 'text-gray-900'} transition-colors delay-500`}>{item.title}</h3>
                   <h4 className={`text-md ${isDark ? 'text-gray-300' : 'text-gray-600'} transition-colors delay-500`}>{item.company}</h4>
                 </div>
-                <span className={`text-sm ${isDark ? 'text-gray-400' : 'text-gray-500'} transition-colors delay-500`}>{item.location}</span>
+                <span className={`text-sm text-right ${isDark ? 'text-gray-400' : 'text-gray-500'} transition-colors delay-500`}>{item.location}</span>
               </div>
               <p className={`mt-2 ${isDark ? 'text-gray-400' : 'text-gray-600'} transition-colors delay-500`}>{item.description}</p>
               <div className="mt-4 flex flex-wrap gap-2">

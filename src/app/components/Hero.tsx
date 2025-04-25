@@ -8,7 +8,7 @@ const Hero = () => {
   const { isDark } = useThemeContext();
 
   return (
-    <section className={`min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 ${
+    <section id='home' className={`min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 ${
       isDark ? 'bg-gray-900' : 'bg-white'
     } transition-colors delay-500`}>
       <div className="max-w-7xl mx-auto text-center">
