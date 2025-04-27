@@ -38,6 +38,7 @@ const timelineData = [
 
 const TimelineItem = ({ item, isLast }: { item: typeof timelineData[0]; isLast: boolean }) => {
   const { isDark } = useThemeContext();
+  const [isDarkTrack, setIsDarkTrack] = useState(isDark);
   const itemRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: itemRef,
@@ -46,6 +47,12 @@ const TimelineItem = ({ item, isLast }: { item: typeof timelineData[0]; isLast: 
 
   const opacity = useTransform(scrollYProgress, [0.1, 0.4], [0, 1]);
   const x = useTransform(scrollYProgress, [0.1, 0.4], [100, 0]);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setIsDarkTrack(isDark);
+    }, 500);
+  }, [isDark]);
 
   return (
     <div className="mb-24 relative xl:translate-x-10">
@@ -101,7 +108,9 @@ const TimelineItem = ({ item, isLast }: { item: typeof timelineData[0]; isLast: 
           className="flex-1 mt-8 xl:mt-0 xl:pl-8 transform translate-y-[var(--slide-distance)] xl:translate-y-0 xl:translate-x-[var(--slide-distance)] transition-transform duration-500 ease-in-out"
         >
           {/* Card content remains the same */}
-          <div className={`rounded-lg shadow-lg overflow-hidden ${isDark ? 'bg-gray-800' : 'bg-white'} transition-colors delay-500`}>
+          <div className={`rounded-lg shadow-lg border-1 overflow-hidden ${
+              isDarkTrack ? 'bg-gray-800 shadow-gray-700 border-gray-700' : 'bg-white shadow-gray-300 border-black'
+            }`}>
             {item.image && (
               <div className="relative h-48 w-full">
                 <Image

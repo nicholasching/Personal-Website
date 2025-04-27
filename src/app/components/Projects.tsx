@@ -143,12 +143,19 @@ const tagIcons: Record<string, React.ReactNode> = {
 
 const ProjectCard = ({ project }: { project: typeof projects[0] }) => {
   const { isDark } = useThemeContext();
+  const [isDarkTrack, setIsDarkTrack] = useState(isDark);
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isMediaHovered, setIsMediaHovered] = useState(false);
   const [isCardHovered, setIsCardHovered] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 50, y: 50 });
   const containerRef = useRef<HTMLDivElement>(null);
   const [isVideoVisible, setIsVideoVisible] = useState(false);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setIsDarkTrack(isDark);
+    }, 500);
+  }, [isDark]);
 
   // Handle video autoplay when in view
   useEffect(() => {
@@ -192,9 +199,9 @@ const ProjectCard = ({ project }: { project: typeof projects[0] }) => {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: false }}
       transition={{ duration: 0.5 }}
-      className={`group relative rounded-xl overflow-hidden shadow-lg ${
-        isDark ? 'bg-gray-800' : 'bg-white'
-      } transition-colors delay-500`}
+      className={`group relative rounded-xl overflow-hidden shadow-lg border-1 ${
+        isDarkTrack ? 'bg-gray-800 shadow-gray-700 border-gray-700' : 'bg-white shadow-gray-300 border-black'
+      }`}
       onMouseEnter={() => setIsCardHovered(true)}
       onMouseLeave={() => {
         setIsCardHovered(false);
