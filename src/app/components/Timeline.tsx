@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 import Image from 'next/image';
 import { useThemeContext } from '../providers/ThemeProvider';
@@ -145,11 +145,18 @@ const TimelineItem = ({ item, isLast }: { item: typeof timelineData[0]; isLast: 
 
 const Timeline = () => {
   const { isDark } = useThemeContext();
+  const [isDarkTrack, setIsDarkTrack] = useState(isDark);
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start center", "end center"]
   });
+
+  useEffect(() => {
+    setTimeout(() => {
+      setIsDarkTrack(isDark);
+    }, 500);
+  }, [isDark]);
 
   // Add spring animation for smoother line drawing
   const smoothProgress = useSpring(scrollYProgress, {
@@ -159,9 +166,14 @@ const Timeline = () => {
   });
 
   return (
-    <section id="experience" className={`py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden ${isDark ? 'bg-gray-900' : 'bg-white'} transition-colors delay-500`}>
+    <section 
+      id="experience" 
+      className={`py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden border-b-3 border-gray-600 ${
+        isDarkTrack ? 'bg-gray-900 grid-background-dark' : 'bg-white grid-background-light'
+      }`}
+    >
       
-      <div className="max-w-5xl mx-auto">
+      <div className="max-w-5xl mx-auto relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}

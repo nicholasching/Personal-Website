@@ -398,9 +398,16 @@ if (typeof document !== 'undefined') {
 
 const Projects = () => {
   const { isDark } = useThemeContext();
+  const [isDarkTrack, setIsDarkTrack] = useState(isDark);
   const [filter, setFilter] = useState<string>('all');
   const [showAllTags, setShowAllTags] = useState(false);
   
+  useEffect(() => {
+    setTimeout(() => {
+      setIsDarkTrack(isDark);
+    }, 500);
+  }, [isDark]);
+
   // Calculate tag popularity
   const tagCounts = projects.reduce((acc, project) => {
     project.tags.forEach(tag => {
@@ -422,10 +429,13 @@ const Projects = () => {
     : projects.filter(p => p.tags.includes(filter));
 
   return (
-    <section id="projects" className={`py-20 px-4 sm:px-6 lg:px-8 ${
-      isDark ? 'bg-gray-900' : 'bg-white'
-    } transition-colors delay-500`}>
-      <div className="max-w-7xl mx-auto">
+    <section 
+      id="projects" 
+      className={`py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden ${
+        isDarkTrack ? 'bg-gray-900 grid-background-dark' : 'bg-white grid-background-light'
+      }`}
+    >
+      <div className="max-w-7xl mx-auto relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}

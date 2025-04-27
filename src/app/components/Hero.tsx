@@ -3,15 +3,26 @@
 import { motion } from 'framer-motion';
 import { FiGithub, FiLinkedin, FiMail } from 'react-icons/fi';
 import { useThemeContext } from '../providers/ThemeProvider';
+import { useEffect, useState } from 'react';
 
 const Hero = () => {
   const { isDark } = useThemeContext();
+  const [isDarkTrack, setIsDarkTrack] = useState(isDark);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setIsDarkTrack(isDark);
+    }, 500);
+  }, [isDark]);
 
   return (
-    <section id='home' className={`min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 ${
-      isDark ? 'bg-gray-900' : 'bg-white'
-    } transition-colors delay-500`}>
-      <div className="max-w-7xl mx-auto text-center">
+    <section 
+      id='home' 
+      className={`min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 border-b-3 border-gray-600 ${
+        isDarkTrack ? 'bg-gray-900 grid-background-dark' : 'bg-white grid-background-light'
+      }`}
+    >
+      <div className="max-w-7xl mx-auto text-center relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
