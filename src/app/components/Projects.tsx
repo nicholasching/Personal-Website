@@ -199,8 +199,8 @@ const ProjectCard = ({ project }: { project: typeof projects[0] }) => {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: false }}
       transition={{ duration: 0.5 }}
-      className={`group relative rounded-xl overflow-hidden shadow-lg border-1 ${
-        isDarkTrack ? 'bg-gray-800 shadow-gray-700 border-gray-700' : 'bg-white shadow-gray-300 border-black'
+      className={`group relative rounded-xl overflow-hidden border-1 ${
+        isDarkTrack ? 'bg-gray-800 shadow-md shadow-gray-700 border-gray-700' : 'bg-white shadow-lg shadow-gray-300 border-black'
       }`}
       onMouseEnter={() => setIsCardHovered(true)}
       onMouseLeave={() => {

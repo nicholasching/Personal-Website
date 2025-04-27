@@ -14,7 +14,7 @@ const timelineData = [
     location: 'Hamilton, Canada',
     description: 'Developed a WYSIWYG editor enabling designers to create and deploy custom paywalls to Bloomberg.com without code, reducing engineering overhead by 80% and eliminating 5+ feedback cycles between teams.',
     skills: ['React', 'TypeScript', 'Node.js'],
-    image: '/experience/mcmaster.png', // Add your images to public/experience/
+    image: '/experience/mcmaster.jpg', // Add your images to public/experience/
   },
   {
     date: '2025.04 ⋅ 2025.05',
@@ -108,8 +108,8 @@ const TimelineItem = ({ item, isLast }: { item: typeof timelineData[0]; isLast: 
           className="flex-1 mt-8 xl:mt-0 xl:pl-8 transform translate-y-[var(--slide-distance)] xl:translate-y-0 xl:translate-x-[var(--slide-distance)] transition-transform duration-500 ease-in-out"
         >
           {/* Card content remains the same */}
-          <div className={`rounded-lg shadow-lg border-1 overflow-hidden ${
-              isDarkTrack ? 'bg-gray-800 shadow-gray-700 border-gray-700' : 'bg-white shadow-gray-300 border-black'
+          <div className={`rounded-lg border-1 overflow-hidden ${
+              isDarkTrack ? 'bg-gray-800 shadow-md shadow-gray-700 border-gray-700' : 'bg-white shadow-lg shadow-gray-300 border-black'
             }`}>
             {item.image && (
               <div className="relative h-48 w-full">
