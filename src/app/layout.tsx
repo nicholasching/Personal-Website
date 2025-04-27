@@ -7,8 +7,8 @@ import { ThemeWrapper } from './components/ThemeWrapper';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata = {
-  title: 'Portfolio',
-  description: 'My personal portfolio website showcasing my experience and projects',
+  title: 'Nicholas Ching',
+  description: `Nicholas Ching'sportfolio website showcasing my experience and projects`,
 };
 
 export default function RootLayout({

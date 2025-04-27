@@ -8,10 +8,10 @@ import { useThemeContext } from '../providers/ThemeProvider';
 
 // Navigation items
 const navItems = [
-  { name: 'Home', href: 'home' },
+  { name: 'Home', href: '#home' },
   // { name: 'About', href: '#about' },
-  { name: 'Experience', href: 'experience' },
-  { name: 'Projects', href: 'projects' },
+  { name: 'Experience', href: '#experience' },
+  { name: 'Projects', href: '#projects' },
   // { name: 'Contact', href: '#contact' },
 ];
 

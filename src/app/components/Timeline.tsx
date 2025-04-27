@@ -48,7 +48,7 @@ const TimelineItem = ({ item, isLast }: { item: typeof timelineData[0]; isLast: 
   const x = useTransform(scrollYProgress, [0.1, 0.4], [100, 0]);
 
   return (
-    <div className="mb-24 relative">
+    <div className="mb-24 relative xl:translate-x-10">
       {/* Timeline dot - Fixed position */}
       <div className="absolute left-[calc(50%)] -translate-x-2/5 -translate-y-10 xl:left-0 xl:translate-x-[50px] xl:translate-y-0 top-2 z-10">
         <motion.div 
@@ -67,7 +67,7 @@ const TimelineItem = ({ item, isLast }: { item: typeof timelineData[0]; isLast: 
 
       {/* Date - Fixed position */}
       <motion.div 
-        className="absolute w-32 left-1/2 -translate-x-40 -translate-y-9.25 xl:left-0 xl:-translate-x-25 xl:-translate-y-[-2px] flex-shrink-0 text-right"
+        className="absolute w-32 left-1/2 -translate-x-40 -translate-y-9.25 xl:left-0 xl:-translate-x-25 xl:-translate-y-[-2px] flex-shrink-0 text-right whitespace-nowrap"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: false }}
@@ -82,7 +82,7 @@ const TimelineItem = ({ item, isLast }: { item: typeof timelineData[0]; isLast: 
       </motion.div>
 
       {/* Content */}
-      <div className="flex items-start gap-6 xl:ml-32">
+      <div className="flex items-start gap-6 xl:ml-32 xl:w-[calc(100%-8rem)]">
         {/* Content card - Slides in */}
         <motion.div
           ref={itemRef}
@@ -160,6 +160,7 @@ const Timeline = () => {
 
   return (
     <section id="experience" className={`py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden ${isDark ? 'bg-gray-900' : 'bg-white'} transition-colors delay-500`}>
+      
       <div className="max-w-5xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -178,7 +179,7 @@ const Timeline = () => {
 
         <div ref={containerRef} className="relative">
           {/* Timeline line container */}
-          <div className={`absolute left-1/2 -translate-y-10 xl:left-[calc(32px+1.5rem)] xl:translate-x-0 xl:translate-y-0 top-2 bottom-0 w-0.75 xl:w-1`}>
+          <div className={`absolute left-1/2 -translate-y-10 xl:left-[calc(32px+1.5rem)] xl:translate-x-10 xl:translate-y-0 top-2 bottom-0 w-0.75 xl:w-1`}>
             {/* Background line */}
             {/* <div className={`h-full rounded-full ${isDark ? 'bg-gray-700' : 'bg-gray-200'} transition-colors delay-500`} /> */}
             {/* Animated line overlay */}
