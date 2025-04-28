@@ -12,11 +12,11 @@ const timelineData = [
     title: 'Software Engineering Research Assistant',
     company: 'McMaster University',
     location: 'Hamilton, Canada',
-    description: 'Developed a WYSIWYG editor enabling designers to create and deploy custom paywalls to Bloomberg.com without code, reducing engineering overhead by 80% and eliminating 5+ feedback cycles between teams.',
-    skills: ['React', 'TypeScript', 'Node.js'],
+    description: 'Incoming Intern for Summer 2025.',
+    skills: ['Docker'],
     image: '/experience/mcmaster.jpg', // Add your images to public/experience/
   },
-  {
+  /*{
     date: '2025.04 ⋅ 2025.05',
     title: 'Software Developer Intern',
     company: 'Skildlabs',
@@ -33,6 +33,24 @@ const timelineData = [
     description: 'Building at the intersection of design engineering and AI.',
     skills: ['React', 'Python', 'Machine Learning'],
     image: '/experience/zeitdice.png',
+  },*/
+  {
+    date: '2023.05 - 2024.08',
+    title: 'Robotics Camp Director and Planning Committee Lead',
+    company: 'Markham African Carribean Canadian Association',
+    location: 'Markham, Canada',
+    description: 'Worked on the Apex AI platform, focusing on enhancing its capabilities and performance.',
+    skills: ['Program Instruction'],
+    image: '/experience/macca.png',
+  },
+  {
+    date: '2023.03 - 2024.06',
+    title: 'Head of Business',
+    company: 'Titans Robotics (FTC 19446/47)',
+    location: 'Markham, Canada',
+    description: 'Worked on the Apex AI platform, focusing on enhancing its capabilities and performance.',
+    skills: ['Photoshop', 'Davinci Resolve', 'Canva'],
+    image: '/experience/titans.png',
   },
 ];
 

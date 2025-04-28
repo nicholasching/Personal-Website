@@ -37,8 +37,7 @@ const projects = [
     description: 'Assistive mobile app created to empower visually impaired users; automatically converts camera images into spoken descriptions with intuitive voice command activation and prompting.',
     image: '/projects/perceptionvid.mp4',
     tags: ['React Native', 'TypeScript', 'Expo', 'Gemini AI SDK'],
-    github: 'https://github.com/getcursor/cursor',
-    demo: 'https://cursor.sh',
+    github: 'https://github.com/nicholasching/Perception',
     metrics: [
       {
         type: 'award',
@@ -273,7 +272,7 @@ const ProjectCard = ({ project }: { project: typeof projects[0] }) => {
                 objectPosition: isMediaHovered ? `${mousePosition.x}% ${mousePosition.y}%` : '50% 50%'
               }}
               loop
-              muted
+              muted={!isMediaHovered} // Unmute when hovered
               playsInline
               preload="metadata"
             >
@@ -560,4 +559,4 @@ const Projects = () => {
   );
 };
 
-export default Projects; 
+export default Projects;
