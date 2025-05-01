@@ -19,6 +19,13 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { isDark, toggleTheme } = useThemeContext();
   const [scrolled, setScrolled] = useState(false);
+  const [isDarkTrack, setIsDarkTrack] = useState(isDark);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setIsDarkTrack(isDark);
+    }, 500);
+  }, [isDark]);
 
   // Handle scroll effect
   useEffect(() => {
@@ -34,15 +41,15 @@ const Navbar = () => {
     <motion.nav
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      className={`fixed w-full z-50 transition-all delay-500 ${
+      className={`fixed w-full z-50 ${
         scrolled 
-          ? isDark 
+          ? isDarkTrack 
             ? 'bg-gray-900/40 shadow-lg backdrop-blur-md'
             : 'bg-white/40 shadow-lg backdrop-blur-md'
-          : isDark
+          : isDarkTrack
             ? 'bg-transparent'
             : 'bg-white/95'
-      } transition-all delay-500`}
+      }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
@@ -50,8 +57,8 @@ const Navbar = () => {
           <Link 
             href="/" 
             className={`font-bold text-xl ${
-              isDark ? 'text-white' : 'text-gray-900'
-            } hover:text-blue-500 transition-all delay-500`}
+              isDarkTrack ? 'text-white' : 'text-gray-900'
+            } hover:text-blue-500`}
           >
             Nicholas Ching
           </Link>
@@ -67,10 +74,10 @@ const Navbar = () => {
                   document.getElementById(item.href)?.scrollIntoView({ behavior: 'smooth' });
                 }}
                 className={`${
-                  isDark 
+                  isDarkTrack 
                     ? 'text-gray-200 hover:text-blue-400' 
                     : 'text-gray-700 hover:text-blue-600'
-                } transition-all delay-500`}
+                }`}
               >
                 {item.name}
               </Link>
@@ -80,13 +87,13 @@ const Navbar = () => {
             <button
               onClick={toggleTheme}
               className={`p-2 rounded-full ${
-                isDark 
+                isDarkTrack 
                   ? 'text-gray-200 hover:bg-gray-800' 
                   : 'text-gray-700 hover:bg-gray-100'
-              } transition-all delay-500`}
+              }`}
               aria-label="Toggle theme"
             >
-              {isDark ? (
+              {isDarkTrack ? (
                 <FiSun className="w-5 h-5" />
               ) : (
                 <FiMoon className="w-5 h-5" />
