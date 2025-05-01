@@ -125,9 +125,9 @@ const TimelineItem = ({ item, isLast }: { item: typeof timelineData[0]; isLast: 
   }, [isDark]);
 
   return (
-    <div className="mb-24 relative xl:translate-x-10">
+    <div className="mb-24 relative md:translate-x-10">
       {/* Timeline dot - Fixed position */}
-      <div className="absolute left-[calc(50%)] -translate-x-2/5 -translate-y-10 xl:left-0 xl:translate-x-[50px] xl:translate-y-0 top-2 z-10">
+      <div className="absolute left-[calc(50%)] -translate-x-2/5 -translate-y-10 md:left-0 md:translate-x-[50px] md:translate-y-0 md:pl-15 xl:pl-0 top-2 z-10">
         <motion.div 
           className={`w-4 h-4 bg-blue-500 rounded-full ring-4 ${isDark ? 'ring-gray-900' : 'ring-white'} transition-colors transition-shadow delay-500`}
           initial={{ scale: 0 }}
@@ -144,7 +144,7 @@ const TimelineItem = ({ item, isLast }: { item: typeof timelineData[0]; isLast: 
 
       {/* Date - Fixed position */}
       <motion.div 
-        className="absolute w-32 left-1/2 -translate-x-40 -translate-y-9.25 xl:left-0 xl:-translate-x-25 xl:-translate-y-[-2px] flex-shrink-0 text-right whitespace-nowrap"
+        className="absolute w-32 left-1/2 -translate-x-40 -translate-y-9.25 md:left-0 md:-translate-x-25 md:-translate-y-[-2px] md:pl-15 xl:pl-0 flex-shrink-0 text-right whitespace-nowrap"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: false }}
@@ -159,7 +159,7 @@ const TimelineItem = ({ item, isLast }: { item: typeof timelineData[0]; isLast: 
       </motion.div>
 
       {/* Content */}
-      <div className="flex items-start gap-6 xl:ml-32 xl:w-[calc(100%-8rem)]">
+      <div className="flex items-start gap-6 md:ml-32 md:pl-5 md:pr-10 md:w-[calc(100%-8rem)] xl:pl-0 xl:pr-0">
         {/* Content card - Slides in */}
         <motion.div
           ref={itemRef}
@@ -175,7 +175,7 @@ const TimelineItem = ({ item, isLast }: { item: typeof timelineData[0]; isLast: 
           // Apply transform using Tailwind classes and the CSS variable:
           // Default (< xl): slide up from bottom (translate Y)
           // On xl screens: reset Y, slide in from right (translate X)
-          className="flex-1 mt-8 xl:mt-0 xl:pl-8 transform translate-y-[var(--slide-distance)] xl:translate-y-0 xl:translate-x-[var(--slide-distance)] transition-transform duration-500 ease-in-out"
+          className="flex-1 mt-8 md:mt-0 md:pl-8 transform translate-y-[var(--slide-distance)] md:translate-y-0 md:translate-x-[var(--slide-distance)] transition-transform duration-500 ease-in-out"
         >
           {/* Card content remains the same */}
           <div className={`rounded-lg border-1 overflow-hidden ${
@@ -240,7 +240,16 @@ const Timeline = () => {
   }, [isDark]);
 
   // Add spring animation for smoother line drawing
-  const smoothProgress = useSpring(scrollYProgress, {
+  const rawProgress = scrollYProgress; // Get the raw progress from the useScroll above
+
+  // Use useTransform to map the raw progress [0, 1] to an expanded range,
+  // for example, [-0.2, 1.2]. This effectively "offsets" the animation
+  // range, making the line start drawing slightly before the element
+  // enters the viewport and finish slightly after it leaves, relative
+  // to the useScroll offset.
+  const adjustedProgress = useTransform(rawProgress, [0, 0.85, 0.9], [0, 0.85, 1]);
+
+  const smoothProgress = useSpring(adjustedProgress, {
     stiffness: 50,
     damping: 15,
     restDelta: 0.001
@@ -249,7 +258,7 @@ const Timeline = () => {
   return (
     <section 
       id="experience" 
-      className={`py-20 px-4 sm:px-6 xl:px-8 relative overflow-hidden border-b-3 border-gray-600 ${
+      className={`py-20 px-4 sm:px-6 md:px-8 relative overflow-hidden border-b-3 border-gray-600 ${
         isDarkTrack ? 'bg-gray-900 grid-background-dark' : 'bg-white grid-background-light'
       }`}
     >
@@ -272,7 +281,7 @@ const Timeline = () => {
 
         <div ref={containerRef} className="relative">
           {/* Timeline line container */}
-          <div className={`absolute left-1/2 -translate-y-10 xl:left-[calc(32px+1.5rem)] xl:translate-x-10 xl:translate-y-0 top-2 bottom-0 w-0.75 xl:w-1`}>
+          <div className={`absolute left-1/2 -translate-y-10 md:left-[calc(32px+1.5rem)] md:translate-x-25 md:translate-y-0 xl:translate-x-10 top-2 bottom-0 w-0.75 md:w-1`}>
             {/* Background line */}
             {/* <div className={`h-full rounded-full ${isDark ? 'bg-gray-700' : 'bg-gray-200'} transition-colors delay-500`} /> */}
             {/* Animated line overlay */}
