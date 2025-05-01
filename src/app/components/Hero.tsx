@@ -22,7 +22,7 @@ const Hero = () => {
         isDarkTrack ? 'bg-gray-900 grid-background-dark' : 'bg-white grid-background-light'
       }`}
     >
-      <div className="max-w-7xl mx-auto text-center relative z-10">
+      <div className="max-w-7xl mx-auto text-center relative z-10 pb-[15vh]">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -75,7 +75,7 @@ const Hero = () => {
           </div>
 
           <motion.div
-            className="flex flex-col sm:flex-row justify-center gap-4 pb-50 xl:pb-30"
+            className="flex flex-col sm:flex-row justify-center gap-4" 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.5 }}
@@ -111,30 +111,32 @@ const Hero = () => {
           </motion.div>
         </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.5 }}
-          className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
-        >
-          <div className="animate-bounce">
-            <svg
-              className={`w-6 h-6 ${
-                isDark ? 'text-gray-200' : 'text-gray-600'
-              } transition-colors delay-500`}
-              fill="none"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
-            </svg>
-          </div>
-        </motion.div>
+        
       </div>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.5 }}
+        className="absolute bottom-5 left-1/2 transform -translate-x-1/2"
+      >
+        <div className="animate-bounce">
+          <svg
+            className={`w-6 h-6 ${
+              isDark ? 'text-gray-200' : 'text-gray-600'
+            } transition-colors delay-500`}
+            fill="none"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+          </svg>
+        </div>
+      </motion.div>
     </section>
+    
   );
 };
 
