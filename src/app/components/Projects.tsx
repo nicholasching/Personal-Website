@@ -465,10 +465,10 @@ const Projects = () => {
             <div className="flex flex-wrap justify-center gap-2">
               <button
                 onClick={() => setFilter('all')}
-                className={`px-4 py-2 rounded-full text-sm font-medium transition-colors delay-500 hover:delay-0 ${
+                className={`px-4 py-2 rounded-full text-sm font-medium transition-colors duration-250 ease-in-out ${
                   filter === 'all'
                     ? 'bg-blue-500 text-white'
-                    : isDark 
+                    : isDarkTrack 
                       ? 'bg-gray-800 text-gray-300 hover:bg-gray-700' 
                       : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                 }`}
@@ -479,10 +479,10 @@ const Projects = () => {
                 <button
                   key={tag}
                   onClick={() => setFilter(tag)}
-                  className={`px-4 py-2 rounded-full text-sm font-medium transition-colors delay-500 hover:delay-0 ${
+                  className={`px-4 py-2 rounded-full text-sm font-medium transition-colors duration-250 ease-in-out ${
                     filter === tag
                       ? 'bg-blue-500 text-white'
-                      : isDark 
+                      : isDarkTrack 
                         ? 'bg-gray-800 text-gray-300 hover:bg-gray-700' 
                         : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                   }`}
@@ -496,8 +496,8 @@ const Projects = () => {
               {otherTags.length > 0 && (
                 <button
                   onClick={() => setShowAllTags(!showAllTags)}
-                  className={`px-4 py-2 rounded-full text-sm font-medium transition-all delay-500 duration-300 ${
-                    isDark 
+                  className={`px-4 py-2 rounded-full text-sm font-medium transition-colors duration-250 ease-in-out ${
+                    isDarkTrack 
                       ? 'bg-blue-500/10 text-blue-400 hover:bg-blue-500/20' 
                       : 'bg-blue-500/10 text-blue-600 hover:bg-blue-500/20'
                   }`}
@@ -529,10 +529,10 @@ const Projects = () => {
                     }}
                     transition={{ duration: 0.3, delay: 0.1 }}
                     onClick={() => setFilter(tag)}
-                    className={`px-4 py-2 rounded-full text-sm font-medium transition-colors delay-500 hover:delay-0 ${
+                    className={`px-4 py-2 rounded-full text-sm font-medium transition-colors duration-250 ease-in-out ${
                       filter === tag
                         ? 'bg-blue-500 text-white'
-                        : isDark 
+                        : isDarkTrack 
                           ? 'bg-gray-800 text-gray-300 hover:bg-gray-700' 
                           : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                     }`}
