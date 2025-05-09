@@ -5,6 +5,7 @@ import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 import Image from 'next/image';
 import { useThemeContext } from '../providers/ThemeProvider';
 import React from 'react'; // Import React
+import { useSectionTracking } from '@/hooks/useSectionTracking';
 
 // Helper function to render description with bold text and links based on markdown syntax
 const renderDescriptionWithBoldMetrics = (description: string) => {
@@ -233,6 +234,8 @@ const Timeline = () => {
     offset: ["start center", "end center"]
   });
 
+  const sectionRef = useSectionTracking('timeline');
+
   useEffect(() => {
     setTimeout(() => {
       setIsDarkTrack(isDark);
@@ -256,12 +259,9 @@ const Timeline = () => {
   });
 
   return (
-    <section 
-      id="experience" 
-      className={`py-20 px-4 sm:px-6 md:px-8 relative overflow-hidden border-b-3 border-gray-600 ${
+    <section ref={sectionRef} id="timeline" className={`py-20 px-4 sm:px-6 md:px-8 relative overflow-hidden border-b-3 border-gray-600 ${
         isDarkTrack ? 'bg-gray-900 grid-background-dark' : 'bg-white grid-background-light'
-      }`}
-    >
+      }`}>
       
       <div className="max-w-5xl mx-auto relative z-10">
         <motion.div

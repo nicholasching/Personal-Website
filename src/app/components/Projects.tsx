@@ -7,6 +7,7 @@ import { FaJava, FaReact, FaNetworkWired } from 'react-icons/fa';
 import { SiNextdotjs, SiTypescript, SiTailwindcss, SiFramer, SiPython, SiOpencv, SiFlask, SiArduino, SiCplusplus, SiHtml5, SiCss3, SiJavascript, SiSpring, SiGooglegemini, SiAppwrite, SiExpo } from 'react-icons/si';
 import { TbApi } from 'react-icons/tb';
 import { useThemeContext } from '../providers/ThemeProvider';
+import { useSectionTracking } from '@/hooks/useSectionTracking';
 
 // Project data based on your GitHub and old website
 const projects = [
@@ -407,6 +408,7 @@ const Projects = () => {
   const [isDarkTrack, setIsDarkTrack] = useState(isDark);
   const [filter, setFilter] = useState<string>('all');
   const [showAllTags, setShowAllTags] = useState(false);
+  const sectionRef = useSectionTracking('projects');
   
   useEffect(() => {
     setTimeout(() => {
@@ -435,12 +437,9 @@ const Projects = () => {
     : projects.filter(p => p.tags.includes(filter));
 
   return (
-    <section 
-      id="projects" 
-      className={`py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden ${
-        isDarkTrack ? 'bg-gray-900 grid-background-dark' : 'bg-white grid-background-light'
-      }`}
-    >
+    <section ref={sectionRef} id="projects" className={`py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden ${
+      isDarkTrack ? 'bg-gray-900 grid-background-dark' : 'bg-white grid-background-light'
+    }`}>
       <div className="max-w-7xl mx-auto relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
